@@ -2,7 +2,7 @@
  * @Author: miaoqiang 
  * @Date: 2018-11-20 10:50:06 
  * @Last Modified by: miaoqiang
- * @Last Modified time: 2018-11-20 17:01:54
+ * @Last Modified time: 2018-11-20 17:08:56
  */
 
 const express = require('express');
@@ -13,7 +13,6 @@ const port = process.env.PORT || 3000;
 const routes = require('./router/router');
 const mysql = require('mysql');
 const mysqlConf = require('./config/mysqlConfig');
-console.log(mysqlConf.mysql)
 
 
 const app = express();
@@ -26,9 +25,9 @@ app.use(bodyParser.json());
 app.use('/media', express.static(path.join(__dirname, 'media')));
 
 // mysql
-const connection = mysql.createConnection({
+const connection = mysql.createConnection(
     mysqlConf.mysql
-})
+)
 connection.connect();
 
 // routers
