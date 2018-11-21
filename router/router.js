@@ -1,19 +1,17 @@
 /*
- * @Author: miaoqiang 
- * @Date: 2018-11-20 11:47:25 
+ * @Author: miaoqiang
+ * @Date: 2018-11-20 11:47:25
  * @Last Modified by: miaoqiang
- * @Last Modified time: 2018-11-20 15:41:39
+ * @Last Modified time: 2018-11-21 14:27:00
  */
 
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-var userRouter = router.get("/user", function (req, res) {
-    return res.status(200).json(
-        {
-            message: 'user'
-        }
-    )
-});
+const UserController = require('../controller/user');
 
-module.exports = userRouter
+
+router.route('/v1/user/register')
+  .post(UserController.register)
+
+module.exports = router
