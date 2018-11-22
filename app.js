@@ -2,7 +2,7 @@
  * @Author: miaoqiang
  * @Date: 2018-11-20 10:50:06
  * @Last Modified by: miaoqiang
- * @Last Modified time: 2018-11-21 15:32:56
+ * @Last Modified time: 2018-11-22 10:38:13
  */
 
 const express = require('express');
@@ -28,11 +28,11 @@ mongoose.connect('mongodb://localhost/shunjie', { useNewUrlParser: true }, funct
 const app = express();
 
 // allowd cors
-app.all('*', function (req, res, next) {
+app.all("*", function(req, res, next) {
+  res.header("Access-Control-Allow-Credentials", true);
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-  res.header("X-Powered-By", ' 3.2.1')
   res.header("Content-Type", "application/json;charset=utf-8");
   next();
 });
