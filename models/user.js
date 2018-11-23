@@ -2,17 +2,16 @@
  * @Author: miaoqiang
  * @Date: 2018-11-21 13:37:30
  * @Last Modified by: miaoqiang
- * @Last Modified time: 2018-11-22 14:12:17
+ * @Last Modified time: 2018-11-23 15:41:15
  */
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
-// const salt = bcrypt.genSaltSync(10);
 
 const UserSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  status: { type: String, default: '0' },
+  status: { type: Number, default: 0 },
   create_time: { type: String, default: new Date().toLocaleString() }
 })
 

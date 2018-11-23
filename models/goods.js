@@ -2,17 +2,18 @@
  * @Author: miaoqiang
  * @Date: 2018-11-21 17:02:10
  * @Last Modified by: miaoqiang
- * @Last Modified time: 2018-11-21 17:03:34
+ * @Last Modified time: 2018-11-23 16:38:34
  */
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const GoodsSchema = new Schema({
   name: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  status:{ type: String, default: '0'},
-  create_time: { type: String, default: new Date().toLocaleString() }
-})
+  price:{type: Number, required: true},
+  status:{ type: Number, default: 0},
+  // create_time: { type: String, default: new Date().toLocaleString() },
+  // modified_time: { type: String, default: new Date().toLocaleString() }
+},{versionKey: false, timestamps: true})
 
-const User = mongoose.model('user', GoodsSchema);
+const Goods = mongoose.model('goods', GoodsSchema);
 module.exports = Goods;
