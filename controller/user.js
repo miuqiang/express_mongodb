@@ -2,7 +2,7 @@
  * @Author: miaoqiang
  * @Date: 2018-11-21 13:52:50
  * @Last Modified by: miaoqiang
- * @Last Modified time: 2018-11-23 16:02:38
+ * @Last Modified time: 2018-11-27 10:41:46
  */
 const JWT = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -14,7 +14,7 @@ const User = require('../models/user');
 signToken = user => {
   return JWT.sign({
     iss: 'www.example.com',
-    sub: user.id,
+    sub: user._id,
     iat: new Date().getTime(),
     exp: new Date().getTime() + TIME_OUT
   }, JWT_SECRET)
@@ -46,7 +46,7 @@ module.exports = {
 
     const newUser = new User(req.body);
     await newUser.save();
-    const token = signToken(newUser._id);
+    const token = signToken(newUser);
 
     res.status(200).json({
       id: newUser._id,
@@ -74,7 +74,7 @@ module.exports = {
       err.status = 400;
       return next(err);
     }
-    bcrypt.compare(password, user.password, function(err, resbonse) {
+    bcrypt.compare(password.toString(), user.password, function(err, resbonse) {
       // res === true
       if (resbonse) {
         const token = signToken(user._id);
@@ -93,7 +93,6 @@ module.exports = {
     var page_size = parseInt( req.query.page_size ) || PAGE_SIZE,
       page_num = parseInt ( req.query.page_num ) || PAGE_NUM,
       status = req.query.status == '' ? {}:{status: parseInt( req.query.status )};
-
     const user = await User.aggregate([
       { $match : status },
       { $project: { username: 1, status: 1 } },
