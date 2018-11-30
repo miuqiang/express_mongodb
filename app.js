@@ -2,7 +2,7 @@
  * @Author: miaoqiang
  * @Date: 2018-11-20 10:50:06
  * @Last Modified by: miaoqiang
- * @Last Modified time: 2018-11-23 16:30:43
+ * @Last Modified time: 2018-11-30 15:40:04
  */
 
 const express = require('express');
@@ -73,11 +73,12 @@ if (app.get('env') === 'development') {
 app.use(function (err, req, res, next) {
   res.status(err.status || 500).json({
     message: err.message,
+    err_code: err.status || 500
   })
 })
 
 
 // start serve
-app.listen(port, function () {
+app.listen(port, '0.0.0.0', function () {
   console.log(`Server listen on ${port}...`);
 });

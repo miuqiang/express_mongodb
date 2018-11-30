@@ -2,7 +2,7 @@
  * @Author: miaoqiang
  * @Date: 2018-11-27 10:42:57
  * @Last Modified by: miaoqiang
- * @Last Modified time: 2018-11-27 13:56:03
+ * @Last Modified time: 2018-11-30 16:02:34
  */
 const { PAGE_SIZE, PAGE_NUM } = require('../config');
 
@@ -32,9 +32,9 @@ module.exports = {
       { $limit: page_size }
     ]);
 
-    const counts = await Orders.find({user_id: user_id});
+    const counts = await Orders.find({user_id: user_id}).count();
     res.json({
-      counts: counts.length,
+      counts: counts,
       page_num: page_num,
       page_size: page_size,
       rows: orders

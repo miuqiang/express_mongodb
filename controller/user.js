@@ -2,7 +2,7 @@
  * @Author: miaoqiang
  * @Date: 2018-11-21 13:52:50
  * @Last Modified by: miaoqiang
- * @Last Modified time: 2018-11-27 10:41:46
+ * @Last Modified time: 2018-11-30 15:58:57
  */
 const JWT = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -100,10 +100,10 @@ module.exports = {
       { $limit: page_size }
     ]);
 
-    const counts = await User.find(status);
+    const counts = await User.find(status).count();
 
     res.json({
-      counts: counts.length,
+      counts: counts,
       page_num: page_num,
       page_size: page_size,
       rows: user
