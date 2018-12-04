@@ -2,7 +2,7 @@
  * @Author: miaoqiang
  * @Date: 2018-11-21 13:52:50
  * @Last Modified by: miaoqiang
- * @Last Modified time: 2018-11-30 15:58:57
+ * @Last Modified time: 2018-12-04 16:35:03
  */
 const JWT = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
