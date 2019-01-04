@@ -2,7 +2,7 @@
  * @Author: miaoqiang
  * @Date: 2018-11-23 15:05:22
  * @Last Modified by: miaoqiang
- * @Last Modified time: 2018-11-23 16:58:52
+ * @Last Modified time: 2018-12-05 11:11:15
  */
 const { PAGE_SIZE, PAGE_NUM } = require('../config');
 
@@ -10,12 +10,12 @@ const Goods = require('../models/goods');
 
 module.exports = {
   getGoods: async (req, res, next) => {
-    var page_size = parseInt( req.query.page_size ) || PAGE_SIZE,
-      page_num = parseInt ( req.query.page_num ) || PAGE_NUM;
+    var page_size = parseInt(req.query.page_size) || PAGE_SIZE,
+      page_num = parseInt(req.query.page_num) || PAGE_NUM;
 
     const counts = await Goods.find({});
     const goods = await Goods.aggregate([
-      { $skip : ((page_num-1)*page_size) },
+      { $skip: ((page_num - 1) * page_size) },
       { $limit: page_size }
     ]);
     res.json({
@@ -28,7 +28,7 @@ module.exports = {
   },
   createGoods: async (req, res, next) => {
     const { name, price } = req.body;
-    const goods = await Goods.findOne({name: name});
+    const goods = await Goods.findOne({ name: name });
     if (!name) {
       var err = new Error('商品名称不能为空');
       err.status = 400;
